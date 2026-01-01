@@ -18,7 +18,7 @@ import Cart from "./pages/Cart";
 const App = () => {
 
   // ===============================
-  // ADD TO CART (FIXED)
+  // ADD TO CART (FINAL FIX)
   // ===============================
   const addToCart = async (product) => {
     const userId = localStorage.getItem("user_id");
@@ -29,10 +29,12 @@ const App = () => {
       return;
     }
 
+    console.log("PRODUCT RECEIVED:", product); // 🔥 DEBUG
+
     try {
       await axios.post("https://webv2-lx9o.onrender.com/cart", {
         user_id: Number(userId),
-        product_id: product.id,   // ✅ CORRECT FIELD
+        product_id: product.product_id, // ✅ CORRECT FIELD (VERY IMPORTANT)
         quantity: 1,
       });
 

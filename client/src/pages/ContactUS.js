@@ -24,7 +24,7 @@ const ContactUS = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/contact", contact);
+      await axios.post("https://webv2-lx9o.onrender.com/contact", contact);
       navigate("/contact");
       alert("Your message has been sent!");
     } catch (err) {

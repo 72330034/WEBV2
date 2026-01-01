@@ -9,7 +9,9 @@ const Category = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get("https://webv2-lx9o.onrender.com/categories");
+        const res = await axios.get(
+          "https://webv2-lx9o.onrender.com/categories"
+        );
         setCategories(res.data);
       } catch (err) {
         console.log(err);
@@ -29,7 +31,7 @@ const Category = () => {
             <div className="categoryItem">
               <div className="categoryImage">
                 <img
-                  src={`http://localhost:5000/images/${cat.image}`}
+                  src={`https://webv2-lx9o.onrender.com/images/${cat.image}`} // ✅ FIXED URL
                   alt={cat.name}
                 />
               </div>

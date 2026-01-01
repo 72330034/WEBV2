@@ -17,9 +17,7 @@ import Cart from "./pages/Cart";
 
 const App = () => {
 
-  // ===============================
-  // ADD TO CART (FINAL FIX)
-  // ===============================
+
   const addToCart = async (product) => {
     const userId = localStorage.getItem("user_id");
 
@@ -29,12 +27,12 @@ const App = () => {
       return;
     }
 
-    console.log("PRODUCT RECEIVED:", product); // 🔥 DEBUG
+    console.log("PRODUCT RECEIVED:", product); 
 
     try {
       await axios.post("https://webv2-lx9o.onrender.com/cart", {
         user_id: Number(userId),
-        product_id: product.product_id, // ✅ CORRECT FIELD (VERY IMPORTANT)
+        product_id: product.product_id, 
         quantity: 1,
       });
 
@@ -45,9 +43,7 @@ const App = () => {
     }
   };
 
-  // ===============================
-  // PROTECTED ROUTE
-  // ===============================
+ 
   const ProtectedRoute = ({ children }) => {
     const userId = localStorage.getItem("user_id");
     if (!userId) return <Navigate to="/login" replace />;

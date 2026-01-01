@@ -24,7 +24,7 @@ const App = () => {
     }
 
     try {
-      await axios.post("http://localhost:5000/cart", {
+      await axios.post("https://webv2-lx9o.onrender.com/categories/cart", {
         user_id: Number(userId),
         product_id: product.product_id, // ✅ important
         quantity: 1,

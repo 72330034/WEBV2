@@ -1,0 +1,80 @@
+/* ===== PAGE ===== */
+.category {
+  width: 100%;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background-color: #fafafa;
+}
+
+.categoryTitle {
+  text-align: center;
+  font-size: 2.3rem;
+  color: #d63384;
+  margin-bottom: 40px;
+  font-weight: 600;
+}
+
+/* ===== GRID ===== */
+.categoryList {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 30px;
+}
+
+/* ===== CARD ===== */
+.categoryItem {
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.categoryItem:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.18);
+}
+
+/* ===== IMAGE ===== */
+.categoryImage {
+  width: 100%;
+  height: 300px;
+}
+
+.categoryImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===== NAME ===== */
+.categoryName {
+  padding: 18px;
+  text-align: center;
+}
+
+.categoryName h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #d63384;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* ===== REMOVE LINK STYLE ===== */
+.category a {
+  text-decoration: none;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 600px) {
+  .categoryImage {
+    height: 230px;
+  }
+
+  .categoryTitle {
+    font-size: 1.9rem;
+  }
+}

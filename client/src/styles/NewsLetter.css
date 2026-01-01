@@ -1,0 +1,23 @@
+.newsletter {
+  text-align: center;
+  background: #ffecef;
+  padding: 50px;
+}
+
+.newsletter-box {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.newsletter input {
+  padding: 12px;
+  width: 250px;
+}
+
+.newsletter button {
+  padding: 12px 20px;
+  background: #d63384;
+  border: none;
+  color: #fff;
+}

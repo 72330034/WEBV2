@@ -1,0 +1,192 @@
+/* Main container */
+.cartContainer {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.cartContainer h2 {
+  text-align: center;
+  color: #e91e63;
+  margin-bottom: 30px;
+}
+
+/* Cart card */
+.cartItem {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  background: #fff;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+
+  border: 1px solid #eee;      /* ✅ thinner border */
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+/* Product image */
+.cartItem img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Product info (center name) */
+.cartInfo {
+  flex: 1;
+  text-align: center;          /* ✅ name centered */
+}
+
+.cartInfo h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.cartInfo p {
+  margin: 6px 0;
+  color: #555;
+}
+
+/* Quantity row */
+.cartInfo p:last-of-type {
+  display: flex;
+  justify-content: flex-end;   /* ✅ push quantity to end */
+  align-items: center;
+  gap: 8px;
+}
+
+/* +/- buttons */
+.cartInfo button {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Remove button */
+.cartInfo button:last-child {
+  background: #e53935;
+  margin-top: 8px;
+}
+
+/* Total */
+.cartContainer h3 {
+  text-align: right;
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+/* Force product name to center of card */
+.cartInfo h3 {
+  width: 100%;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Keep price centered under name */
+.cartInfo p:first-of-type {
+  text-align: center;
+}
+
+/* Push quantity line to the right */
+.cartInfo p:last-of-type {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+}
+/* Pink buttons for cart */
+.cartInfo button {
+  background-color: #e91e63;   /* pink */
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+/* Hover effect */
+.cartInfo button:hover {
+  background-color: #d81b60;
+}
+
+/* Disabled buttons */
+.cartInfo button:disabled {
+  background-color: #f3a6c1;
+  cursor: not-allowed;
+}
+/* ===============================
+   QUANTITY BUTTONS COLORS
+=============================== */
+
+/* Decrease (-) button */
+.cartInfo p:last-of-type button:first-of-type {
+  background-color: #f48fb1;   /* light pink */
+  color: #fff;
+}
+
+/* Increase (+) button */
+.cartInfo p:last-of-type button:last-of-type {
+  background-color: #e91e63;   /* strong pink */
+  color: #fff;
+}
+
+/* Hover for quantity buttons */
+.cartInfo p:last-of-type button:hover {
+  opacity: 0.85;
+}
+
+/* ===============================
+   REMOVE (DELETE) BUTTON
+=============================== */
+.cartInfo button:last-child {
+  background-color: #d81b60;   /* darker pink (delete) */
+  color: #fff;
+  margin-top: 10px;
+}
+
+/* Hover remove */
+.cartInfo button:last-child:hover {
+  background-color: #c2185b;
+}
+
+/* Disabled (-) button */
+.cartInfo button:disabled {
+  background-color: #f8bbd0;
+  cursor: not-allowed;
+}
+.orderForm {
+  margin-top: 30px;
+  padding: 20px;
+  border-top: 1px solid #eee;
+}
+
+.orderForm input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.submitOrderBtn {
+  margin-top: 15px;
+  background: #e91e63;
+  color: white;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.submitOrderBtn:hover {
+  background: #d81b60;
+}

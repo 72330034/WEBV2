@@ -1,0 +1,112 @@
+/* ---------- Base layout ---------- */
+.navbar {
+  width: 100%;
+  height: 80px;
+  background: #ffecef;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1000;
+}
+
+/* logo */
+.navbar-left .navbar-logo {
+  width: 80px;
+  height: auto;
+  display: block;
+  cursor: pointer;
+  border-radius: 70px;
+}
+.logo {
+  font-size: 26px;
+  font-weight: bold;
+  color: #d63384;
+}
+
+.logo span {
+  color: #d63384;
+}
+
+/* links (desktop) */
+.navbar-links {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.navbar-links a {
+  color: #d63384;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.navbar-links a:hover {
+  color: #ffecef;
+}
+
+/* burger button (hidden on desktop) */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #d63384;
+  font-size: 28px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 6px;
+}
+
+/* ---------- Mobile behavior ---------- */
+@media (max-width: 768px) {
+  /* show the burger */
+  .menu-toggle {
+    display: block;
+  }
+
+  /* hide desktop links by default */
+  .navbar-links {
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: #ffecef;
+    flex-direction: column;
+    gap: 18px;
+    padding: 18px 0;
+    box-sizing: border-box;
+    align-items: center;
+    /* start hidden off-screen for nicer toggle (optional) */
+    transform: translateY(-10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 220ms ease;
+  }
+
+  /* when active, show links */
+  .navbar-links.active {
+    display: flex;
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .navbar-links a {
+    font-size: 18px;
+    padding: 6px 12px;
+  }
+}
+
+
+/* make sure nothing else accidentally hides these */
+.navbar, .navbar * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

@@ -1,0 +1,15 @@
+.categoryProducts {
+  padding: 30px;
+}
+
+.categoryProducts h1 {
+  text-align: center;
+  color:  #d63384;
+  margin-bottom: 30px;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+}

@@ -18,7 +18,7 @@ const Login = () => {
     setError("");
 
     try {
-      const res = await axios.post("http://localhost:5000/login", user);
+      const res = await axios.post("https://webv2-lx9o.onrender.com/login", user);
 
       if (res.data.success) {
         alert(res.data.message);

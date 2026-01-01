@@ -7,7 +7,7 @@ const Product = ({ product, addToCart }) => {
   return (
     <div className="productItem">
       <div className="productImage">
-        <img src={`http://localhost:5000/images/${product.image}`} alt={product.name} />
+        <img src={`https://webv2-lx9o.onrender.com/images/${product.image}`} alt={product.name} />
       </div>
 
       <div className="productInfo">

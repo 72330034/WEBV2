@@ -11,10 +11,10 @@ const Home = ({ addToCart }) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/categories")
+    axios.get("https://webv2-lx9o.onrender.com/categories")
       .then(res => setCategories(res.data));
 
-    axios.get("http://localhost:5000/products")
+    axios.get("https://webv2-lx9o.onrender.com/products")
       .then(res => setProducts(res.data));
   }, []);
 
@@ -30,7 +30,7 @@ const Home = ({ addToCart }) => {
           <Link to={`/categories/${cat.id}`} key={cat.id}>
             <div className="categoryItem">
               <img
-                src={`http://localhost:5000/images/${cat.image}`}
+                src={`https://webv2-lx9o.onrender.com/images/${cat.image}`}
                 alt={cat.name}
               />
               <h3>{cat.name}</h3>

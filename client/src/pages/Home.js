@@ -11,11 +11,15 @@ const Home = ({ addToCart }) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios.get("https://webv2-lx9o.onrender.com/categories")
-      .then(res => setCategories(res.data));
+    axios
+      .get("https://webv2-lx9o.onrender.com/categories")
+      .then((res) => setCategories(res.data))
+      .catch((err) => console.log(err));
 
-    axios.get("https://webv2-lx9o.onrender.com/products")
-      .then(res => setProducts(res.data));
+    axios
+      .get("https://webv2-lx9o.onrender.com/products")
+      .then((res) => setProducts(res.data))
+      .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -26,7 +30,7 @@ const Home = ({ addToCart }) => {
       {/* ===== Categories Section ===== */}
       <h2>Shop by Category</h2>
       <div className="categoryGrid">
-        {categories.map(cat => (
+        {categories.map((cat) => (
           <Link to={`/categories/${cat.id}`} key={cat.id}>
             <div className="categoryItem">
               <img
@@ -42,11 +46,11 @@ const Home = ({ addToCart }) => {
       {/* ===== Products Section ===== */}
       <h2>Our Collection</h2>
       <div className="productsGrid">
-        {products.map(product => (
+        {products.map((product) => (
           <Product
-            key={product.id}
-            product={product}
-            addToCart={addToCart}
+            key={product.product_id}   // ✅ FIXED
+            product={product}          // ✅ FULL OBJECT
+            addToCart={addToCart}      // ✅ PASSED CORRECTLY
           />
         ))}
       </div>

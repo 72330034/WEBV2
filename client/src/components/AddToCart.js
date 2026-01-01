@@ -9,7 +9,7 @@ const addToCart = async (productId, size, quantity) => {
   }
 
   try {
-    await axios.post("http://localhost:5000/cart", {
+    await axios.post("https://webv2-lx9o.onrender.com/cart", {
       user_id: userId,
       product_id: productId,
       size,

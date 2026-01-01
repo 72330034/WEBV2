@@ -9,7 +9,7 @@ const Category = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/categories");
+        const res = await axios.get("https://webv2-lx9o.onrender.com/categories");
         setCategories(res.data);
       } catch (err) {
         console.log(err);

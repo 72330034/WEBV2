@@ -48,9 +48,9 @@ const Home = ({ addToCart }) => {
       <div className="productsGrid">
         {products.map((product) => (
           <Product
-            key={product.product_id}   // ✅ FIXED
-            product={product}          // ✅ FULL OBJECT
-            addToCart={addToCart}      // ✅ PASSED CORRECTLY
+            key={product.product_id} 
+            product={product}         
+            addToCart={addToCart}      
           />
         ))}
       </div>

@@ -8,9 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// ===============================
-// MySQL Connection
-// ===============================
+
 const db = mysql.createConnection({
   host: process.env.MYSQLHOST,
   user: process.env.MYSQLUSER,
@@ -24,14 +22,10 @@ db.connect((err) => {
   else console.log("MySQL connected");
 });
 
-// ===============================
-// Static Images
-// ===============================
+
 app.use("/images", express.static("images"));
 
-// ===============================
-// REGISTER
-// ===============================
+
 app.post("/addUser", (req, res) => {
   const { username, email, password, mobileNumber, address } = req.body;
 
@@ -44,9 +38,7 @@ app.post("/addUser", (req, res) => {
   });
 });
 
-// ===============================
-// LOGIN
-// ===============================
+
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
 
@@ -68,9 +60,7 @@ app.post("/login", (req, res) => {
   });
 });
 
-// ===============================
-// CATEGORIES
-// ===============================
+
 app.get("/categories", (req, res) => {
   db.query("SELECT * FROM categories", (err, data) => {
     if (err) return res.status(500).json(err);
@@ -78,9 +68,7 @@ app.get("/categories", (req, res) => {
   });
 });
 
-// ===============================
-// PRODUCTS
-// ===============================
+
 app.get("/products", (req, res) => {
   db.query("SELECT * FROM products", (err, data) => {
     if (err) return res.status(500).json(err);
@@ -99,9 +87,7 @@ app.get("/products/category/:id", (req, res) => {
   );
 });
 
-// ===============================
-// CONTACT
-// ===============================
+
 app.post("/contact", (req, res) => {
   const { name, email, feedback } = req.body;
 
@@ -113,9 +99,7 @@ app.post("/contact", (req, res) => {
   });
 });
 
-// ===============================
-// CART (FIXED)
-// ===============================
+
 app.post("/cart", (req, res) => {
   const { user_id, product_id, quantity } = req.body;
 
@@ -151,9 +135,7 @@ app.post("/cart", (req, res) => {
   });
 });
 
-// ===============================
-// GET CART (FIXED)
-// ===============================
+
 app.get("/cart/:userId", (req, res) => {
   const sql = `
     SELECT 
@@ -174,9 +156,7 @@ app.get("/cart/:userId", (req, res) => {
   });
 });
 
-// ===============================
-// UPDATE CART
-// ===============================
+
 app.put("/cart/:cartId", (req, res) => {
   const { quantity } = req.body;
 
@@ -190,9 +170,7 @@ app.put("/cart/:cartId", (req, res) => {
   );
 });
 
-// ===============================
-// DELETE CART ITEM
-// ===============================
+
 app.delete("/cart/:cartId", (req, res) => {
   db.query("DELETE FROM cart WHERE id=?", [req.params.cartId], (err) => {
     if (err) return res.status(500).json(err);
@@ -200,9 +178,7 @@ app.delete("/cart/:cartId", (req, res) => {
   });
 });
 
-// ===============================
-// ORDER (FIXED)
-// ===============================
+
 app.post("/order", (req, res) => {
   const { user_id, address, mobileNumber } = req.body;
 
@@ -252,9 +228,7 @@ app.post("/order", (req, res) => {
   });
 });
 
-// ===============================
-// START SERVER
-// ===============================
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

@@ -23,7 +23,7 @@ const Login = () => {
       if (res.data.success) {
         alert(res.data.message);
 
-        // ✅ Save login
+        
         localStorage.setItem("user_id", String(res.data.user.id));
         localStorage.setItem("user", JSON.stringify(res.data.user));
 

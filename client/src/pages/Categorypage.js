@@ -10,7 +10,7 @@ const CategoryProducts = ({ addToCart }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/products/category/${id}`)
+      .get(`https://webv2-lx9o.onrender.com/products/category/${id}`)
       .then((res) => setProducts(res.data))
       .catch((err) => console.log(err));
   }, [id]);

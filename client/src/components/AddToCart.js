@@ -11,14 +11,14 @@ const addToCart = async (product) => {
   try {
     await axios.post("https://webv2-lx9o.onrender.com/cart", {
       user_id: Number(userId),
-      product_id: product.id, // ✅ FIXED
+      product_id: Number(product.id),
       quantity: 1,
     });
 
     alert("Product added to cart 🛒");
   } catch (err) {
-    console.error(err);
-    alert("Failed to add product to cart");
+    console.error("Add to cart error:", err.response?.data || err.message);
+    alert("Failed to add product");
   }
 };
 

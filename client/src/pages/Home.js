@@ -27,7 +27,7 @@ const Home = ({ addToCart }) => {
       <h1>Welcome to D&L Women Store!</h1>
       <Text />
 
-      {/* ===== Categories Section ===== */}
+    
       <h2>Shop by Category</h2>
       <div className="categoryGrid">
         {categories.map((cat) => (
@@ -43,7 +43,7 @@ const Home = ({ addToCart }) => {
         ))}
       </div>
 
-      {/* ===== Products Section ===== */}
+ 
       <h2>Our Collection</h2>
       <div className="productsGrid">
         {products.map((product) => (

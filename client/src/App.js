@@ -2,8 +2,10 @@ import "./App.css";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import axios from "axios";
+
 import NavBar from "./components/NavBar";
-import Footer from "./components/Footer"
+import Footer from "./components/Footer";
+
 import Home from "./pages/Home";
 import About from "./pages/About";
 import ContactUS from "./pages/ContactUS";
@@ -14,6 +16,10 @@ import Register from "./pages/Register";
 import Cart from "./pages/Cart";
 
 const App = () => {
+
+  // ===============================
+  // ADD TO CART (FIXED)
+  // ===============================
   const addToCart = async (product) => {
     const userId = localStorage.getItem("user_id");
 
@@ -24,19 +30,22 @@ const App = () => {
     }
 
     try {
-      await axios.post("https://webv2-lx9o.onrender.com/categories/cart", {
+      await axios.post("https://webv2-lx9o.onrender.com/cart", {
         user_id: Number(userId),
-        product_id: product.product_id, // ✅ important
+        product_id: product.id,   // ✅ CORRECT FIELD
         quantity: 1,
       });
 
-      alert("Product added to cart");
+      alert("Product added to cart 🛒");
     } catch (error) {
-      console.log(error);
+      console.error("Add to cart error:", error.response?.data || error.message);
       alert("Failed to add product to cart");
     }
   };
 
+  // ===============================
+  // PROTECTED ROUTE
+  // ===============================
   const ProtectedRoute = ({ children }) => {
     const userId = localStorage.getItem("user_id");
     if (!userId) return <Navigate to="/login" replace />;
@@ -57,7 +66,10 @@ const App = () => {
           <Route path="/categories/:id" element={<Categorypage addToCart={addToCart} />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/cart" element={
+
+          <Route
+            path="/cart"
+            element={
               <ProtectedRoute>
                 <Cart />
               </ProtectedRoute>

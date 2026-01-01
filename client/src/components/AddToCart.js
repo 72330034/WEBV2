@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const addToCart = async (productId, size, quantity) => {
-  const userId = localStorage.getItem("userId");
+const addToCart = async (product) => {
+  const userId = localStorage.getItem("user_id");
 
   if (!userId) {
     alert("Please login first");
@@ -10,15 +10,15 @@ const addToCart = async (productId, size, quantity) => {
 
   try {
     await axios.post("https://webv2-lx9o.onrender.com/cart", {
-      user_id: userId,
-      product_id: productId,
-      size,
-      quantity,
+      user_id: Number(userId),
+      product_id: product.product_id,
+      quantity: 1,
     });
 
     alert("Product added to cart 🛒");
   } catch (err) {
-    console.log(err);
+    console.error("Add to cart error:", err);
+    alert("Failed to add product");
   }
 };
 

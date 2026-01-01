@@ -16,7 +16,7 @@ const Cart = () => {
   // ===============================
   const fetchCart = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/cart/${userId}`);
+      const res = await axios.get(`https://webv2-lx9o.onrender.com/cart/${userId}`);
       setCartItems(res.data);
       setLoading(false);
     } catch (err) {
@@ -37,7 +37,7 @@ const Cart = () => {
     if (quantity < 1) return;
 
     try {
-      await axios.put(`http://localhost:5000/cart/${cartId}`, { quantity });
+      await axios.put(`https://webv2-lx9o.onrender.com/cart/${cartId}`, { quantity });
 
       setCartItems(
         cartItems.map((item) =>
@@ -54,7 +54,7 @@ const Cart = () => {
   // ===============================
   const removeFromCart = async (cartId) => {
     try {
-      await axios.delete(`http://localhost:5000/cart/${cartId}`);
+      await axios.delete(`https://webv2-lx9o.onrender.com/cart/${cartId}`);
       setCartItems(cartItems.filter((item) => item.cart_id !== cartId));
     } catch (err) {
       console.error("Error removing item:", err);
@@ -66,7 +66,7 @@ const Cart = () => {
   // ===============================
   const submitOrder = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/order", {
+      const res = await axios.post("https://webv2-lx9o.onrender.com/order", {
         user_id: userId,
         address,
         mobileNumber,
@@ -93,7 +93,7 @@ const Cart = () => {
       {cartItems.map((item) => (
         <div className="cartItem" key={item.cart_id}>
           <img
-            src={`http://localhost:5000/images/${item.image}`}
+            src={`https://webv2-lx9o.onrender.com/images/${item.image}`}
             alt={item.name}
           />
 

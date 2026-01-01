@@ -25,7 +25,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/addUser", user);
+      await axios.post("https://webv2-lx9o.onrender.com/addUser", user);
       navigate("/");
       alert("Registration successful!");
     } catch (err) {

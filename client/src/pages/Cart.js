@@ -11,9 +11,7 @@ const Cart = () => {
   const [mobileNumber, setMobileNumber] = useState(user?.mobileNumber || "");
   const [loading, setLoading] = useState(true);
 
-  // ===============================
-  // Fetch cart
-  // ===============================
+
   const fetchCart = async () => {
     try {
       const res = await axios.get(`https://webv2-lx9o.onrender.com/cart/${userId}`);
@@ -27,12 +25,9 @@ const Cart = () => {
 
   useEffect(() => {
     fetchCart();
-    // eslint-disable-next-line
+    
   }, []);
 
-  // ===============================
-  // Update quantity
-  // ===============================
   const updateQuantity = async (cartId, quantity) => {
     if (quantity < 1) return;
 
@@ -49,9 +44,7 @@ const Cart = () => {
     }
   };
 
-  // ===============================
-  // Remove item
-  // ===============================
+
   const removeFromCart = async (cartId) => {
     try {
       await axios.delete(`https://webv2-lx9o.onrender.com/cart/${cartId}`);
@@ -61,9 +54,7 @@ const Cart = () => {
     }
   };
 
-  // ===============================
-  // Submit order
-  // ===============================
+
   const submitOrder = async () => {
     try {
       const res = await axios.post("https://webv2-lx9o.onrender.com/order", {
@@ -80,9 +71,7 @@ const Cart = () => {
     }
   };
 
-  // ===============================
-  // UI states
-  // ===============================
+
   if (loading) return <p>Loading cart...</p>;
   if (cartItems.length === 0) return <p>Your cart is empty</p>;
 
@@ -138,9 +127,7 @@ const Cart = () => {
         )}
       </h3>
 
-      {/* ===============================
-          Delivery Information
-      =============================== */}
+      
       <div className="orderForm">
         <h3>Delivery Information</h3>
 

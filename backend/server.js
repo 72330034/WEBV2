@@ -20,11 +20,8 @@ const db = mysql.createConnection({
 });
 
 db.connect((err) => {
-  if (err) {
-    console.log("MySQL Error:", err);
-  } else {
-    console.log("MySQL connected");
-  }
+  if (err) console.log("MySQL Error:", err);
+  else console.log("MySQL connected");
 });
 
 // ===============================
@@ -85,11 +82,7 @@ app.get("/categories", (req, res) => {
 // PRODUCTS
 // ===============================
 app.get("/products", (req, res) => {
-  const categoryId = req.query.category;
-  let q = "SELECT * FROM products";
-  if (categoryId) q += " WHERE category_id = ?";
-
-  db.query(q, categoryId ? [categoryId] : [], (err, data) => {
+  db.query("SELECT * FROM products", (err, data) => {
     if (err) return res.status(500).json(err);
     res.json(data);
   });
@@ -121,14 +114,16 @@ app.post("/contact", (req, res) => {
 });
 
 // ===============================
-// CART
+// CART (FIXED)
 // ===============================
 app.post("/cart", (req, res) => {
   const { user_id, product_id, quantity } = req.body;
 
-  console.log("ADD TO CART BODY:", req.body); // ✅ DEBUG LOG
+  console.log("ADD TO CART BODY:", req.body);
 
-  if (!user_id) return res.status(401).json({ message: "Login required" });
+  if (!user_id || !product_id || !quantity) {
+    return res.status(400).json({ message: "Missing data" });
+  }
 
   const checkSql = "SELECT * FROM cart WHERE user_id=? AND product_id=?";
   db.query(checkSql, [user_id, product_id], (err, result) => {
@@ -145,8 +140,8 @@ app.post("/cart", (req, res) => {
       );
     } else {
       db.query(
-        "INSERT INTO cart (user_id, product_id, quantity) VALUES (?,?,?)",
-        [user_id, product_id, quantity],
+        "INSERT INTO cart (user_id, product_id, quantity, size) VALUES (?,?,?,?)",
+        [user_id, product_id, quantity, "M"],
         (err2) => {
           if (err2) return res.status(500).json(err2);
           res.json({ message: "Added to cart" });
@@ -157,19 +152,19 @@ app.post("/cart", (req, res) => {
 });
 
 // ===============================
-// GET CART (✅ FIXED JOIN)
+// GET CART (FIXED)
 // ===============================
 app.get("/cart/:userId", (req, res) => {
   const sql = `
     SELECT 
       cart.id AS cart_id,
       cart.quantity,
-      products.id AS product_id,
+      products.product_id,
       products.name,
       products.price,
       products.image
     FROM cart
-    JOIN products ON cart.product_id = products.id
+    JOIN products ON cart.product_id = products.product_id
     WHERE cart.user_id = ?
   `;
 
@@ -184,8 +179,6 @@ app.get("/cart/:userId", (req, res) => {
 // ===============================
 app.put("/cart/:cartId", (req, res) => {
   const { quantity } = req.body;
-  if (quantity < 1)
-    return res.status(400).json({ message: "Quantity must be >= 1" });
 
   db.query(
     "UPDATE cart SET quantity=? WHERE id=?",
@@ -208,17 +201,15 @@ app.delete("/cart/:cartId", (req, res) => {
 });
 
 // ===============================
-// ORDER (✅ FIXED JOIN)
+// ORDER (FIXED)
 // ===============================
 app.post("/order", (req, res) => {
   const { user_id, address, mobileNumber } = req.body;
 
-  if (!user_id) return res.status(401).json({ message: "Login required" });
-
   const cartSql = `
     SELECT cart.product_id, cart.quantity, products.price
     FROM cart
-    JOIN products ON cart.product_id = products.id
+    JOIN products ON cart.product_id = products.product_id
     WHERE cart.user_id = ?
   `;
 
@@ -252,13 +243,7 @@ app.post("/order", (req, res) => {
           (err3) => {
             if (err3) return res.status(500).json(err3);
 
-            db.query(
-              "UPDATE users SET address=?, mobileNumber=? WHERE id=?",
-              [address, mobileNumber, user_id]
-            );
-
             db.query("DELETE FROM cart WHERE user_id=?", [user_id]);
-
             res.json({ success: true, message: "Order submitted successfully" });
           }
         );
